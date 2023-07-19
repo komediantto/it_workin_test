@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "it-workin-test"
+version = "0.1.0"
+description = ""
+authors = ["komediantto <komediantto@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "it_workin_test"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+black = "^23.7.0"
+fastapi = {extras = ["all"], version = "^0.100.0"}
+fastapi-users = {extras = ["sqlalchemy"], version = "^12.1.0"}
+alembic = "^1.11.1"
+asyncpg = "^0.28.0"
+loguru = "^0.7.0"
+psycopg2-binary = "^2.9.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
