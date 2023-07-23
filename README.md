@@ -4,7 +4,7 @@ API для мессенджера.
 
 ## Технологии
 
-FastAPI, PostgreSQL, SQLAlchemy, fastapi_users, alembic
+FastAPI, PostgreSQL, SQLAlchemy, alembic
 
 ## Как запустить
 
