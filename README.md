@@ -15,7 +15,7 @@ DB_USER=postgres
 DB_PASS=postgres
 DB_HOST=db
 DB_PORT=5432
-DB_NAME=<имя вашей базы>
+DB_NAME=postgres
 TOKEN_SECRET_KEY=<секретный ключ для токена(любой)>
 ```
 
