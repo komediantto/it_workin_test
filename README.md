@@ -13,20 +13,16 @@ FastAPI, PostgreSQL, SQLAlchemy, fastapi_users, alembic
 ```env
 DB_USER=postgres
 DB_PASS=postgres
-DB_HOST=localhost
+DB_HOST=db
 DB_PORT=5432
 DB_NAME=<имя вашей базы>
 TOKEN_SECRET_KEY=<секретный ключ для токена(любой)>
-USER_SECRET_KEY=<секретный ключ для юзеров(любой)
 ```
 
-Из корневой директории запустить следующие команды
+Из корневой директории запустить docker-compose
 
 ```bash
-poetry install
-poetry shell
-alembic upgrade head
-uvicorn app.main:app --reload
+docker-compose up
 ```
 
-Документация Swagger будет доступна по адресу <http://127.0.0.1:8000/docs>.
+Документация Swagger будет доступна по адресу <http://0.0.0.0:8000/docs>.
