@@ -1,22 +1,17 @@
-from fastapi_users import schemas
 from pydantic import BaseModel, constr, validator
 
 
-class UserSearchResult(BaseModel):
+class UserSearch(BaseModel):
     id: int
     username: str
     first_name: str
     last_name: str
-    email: str
     phone_number: str
 
 
-class UserRead(schemas.BaseUser[int]):
-    pass
-
-
-class UserCreate(schemas.BaseUserCreate):
+class UserSchema(BaseModel):
     username: str
+    password: str
     first_name: str
     last_name: str
     phone_number: constr(min_length=11, max_length=11)
@@ -28,10 +23,10 @@ class UserCreate(schemas.BaseUserCreate):
         return phone_number
 
 
-class UserUpdate(schemas.BaseUserUpdate):
-    pass
+class TokenData(BaseModel):
+    username: str | None = None
 
 
-class MessageCreate(BaseModel):
-    text: str
-    username: str
+class Token(BaseModel):
+    access_token: str
+    token_type: str

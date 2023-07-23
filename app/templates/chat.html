@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat</title>
+</head>
+
+<body>
+    <h1>Chat with {{ username }}</h1>
+    <h2>Room ID: <span id="ws-id">{{ room.id }}</span></h2>
+    <h2>Your ID: <span id="you-id">{{ user.id }}</span></h2>
+    <form action="" onsubmit="sendMessage(event)">
+        <input type="text" id="messageText" autocomplete="off" />
+        <button>Send</button>
+    </form>
+    <ul id='messages'>
+        {% for message in messages %}
+        <li>{{ message.author.username }}: {{ message.text }}</li>
+        {% endfor %}
+    </ul>
+    <script>
+        var room_id = document.querySelector("#ws-id").textContent;
+        var user_id = document.querySelector("#you-id").textContent;
+        var ws = new WebSocket(`ws://localhost:8000/chat/ws/${room_id}/${user_id}`);
+        ws.onmessage = function (event) {
+            var messages = document.getElementById('messages')
+            var message = document.createElement('li')
+            var content = document.createTextNode(event.data)
+            message.appendChild(content)
+            messages.appendChild(message)
+        };
+        function sendMessage(event) {
+            var input = document.getElementById("messageText")
+            ws.send(input.value)
+            input.value = ''
+            event.preventDefault()
+        }
+    </script>
+</body>
+
+</html>

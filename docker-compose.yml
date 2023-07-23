@@ -1,0 +1,34 @@
+version: "3"
+
+volumes:
+  postgres:
+
+networks:
+  internal:
+
+services:
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    networks:
+      - internal
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+  app:
+    build: ./
+    container_name: app
+    restart: on-failure
+    command: tail -f /dev/null
+    ports:
+      - "8000:8000"
+    networks:
+      - internal
+    env_file:
+      - ./.env
+    depends_on:
+      - db
